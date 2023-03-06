@@ -28,14 +28,31 @@ export const fetchNewsItems = createAsyncThunk(
     }
   },
 );
+export const fetchNewsItem = createAsyncThunk(
+  'news/fetchNewsItem',
+  async (id: number, { rejectWithValue }) => {
+    try {
+      const { data } = await axios
+        .get(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
+        .catch((error) => {
+          throw new Error('Ошибка при загрузке истории');
+        });
+      return data;
+    } catch (error: any) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
 
 interface initialStateType {
+  item: NewsItemType | null;
   items: NewsItemType[];
   error: string | null;
   isLoading: 'loading' | 'success' | 'reject';
 }
 
 const initialState: initialStateType = {
+  item: null,
   items: [],
   error: null,
   isLoading: 'loading',
@@ -58,6 +75,17 @@ const newsSlice = createSlice({
       state.isLoading = 'success';
     });
     builder.addCase(fetchNewsItems.rejected, (state, action: PayloadAction<any>) => {
+      state.error = action.payload;
+      state.isLoading = 'reject';
+    });
+    builder.addCase(fetchNewsItem.pending, (state) => {
+      state.isLoading = 'loading';
+    });
+    builder.addCase(fetchNewsItem.fulfilled, (state, action: PayloadAction<NewsItemType>) => {
+      state.item = action.payload;
+      state.isLoading = 'success';
+    });
+    builder.addCase(fetchNewsItem.rejected, (state, action: PayloadAction<any>) => {
       state.error = action.payload;
       state.isLoading = 'reject';
     });

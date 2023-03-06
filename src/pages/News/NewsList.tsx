@@ -6,7 +6,8 @@ import { useAppDispatch } from '../../store/store';
 import NewsItem from './NewsItem';
 import '../../App.css';
 import styles from './NewsList.module.scss';
-import Loader from '../Loader';
+import Loader from '../../components/Loader';
+import Header from '../../components/Header';
 
 const NewsList: React.FC = () => {
   const [firstLoad, setFirstLoad] = React.useState(true);
@@ -18,7 +19,9 @@ const NewsList: React.FC = () => {
       setInterval(() => dispatch(fetchNewsItems()), 60000);
     }
   }, [firstLoad]);
+
   React.useEffect(() => {
+    window.history.scrollRestoration = 'manual';
     if (firstLoad) {
       dispatch(fetchNewsItems());
       setFirstLoad(false);
@@ -26,15 +29,18 @@ const NewsList: React.FC = () => {
   }, []);
 
   return (
-    <Container sx={{ mt: '1rem' }}>
-      {isLoading === 'reject' && <h2>{error}</h2>}
-      {isLoading === 'loading' && <Loader />}
-      {items.map((element, index) => (
-        <div className={styles.root}>
-          <NewsItem key={element.id} props={element} index={index} />
-        </div>
-      ))}
-    </Container>
+    <>
+      <Header version="update" />
+      <Container sx={{ mt: '1rem' }}>
+        {isLoading === 'reject' && <h2>{error}</h2>}
+        {isLoading === 'loading' && <Loader />}
+        {items.map((element, index) => (
+          <div className={styles.root}>
+            <NewsItem key={element.id} props={element} index={index} />
+          </div>
+        ))}
+      </Container>
+    </>
   );
 };
 
