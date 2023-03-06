@@ -8,4 +8,5 @@ export interface NewsItemType {
   title: string;
   type: string;
   url: string;
+  deleted?: true;
 }

@@ -1,24 +1,14 @@
+import { Container } from '@mui/material';
 import React from 'react';
-import { useSelector } from 'react-redux';
 import './App.css';
-import { fetchNewsItems, selectorNews } from './store/newsSlice';
-import { useAppDispatch } from './store/store';
-import { NewsItemType } from './types/NewsItemType';
+import Header from './components/Header';
+import NewsList from './components/News/NewsList';
 
 const App: React.FC = () => {
-  // const newsId = useSelector(selectorNewsId);
-  const { items, error, isLoading } = useSelector(selectorNews);
-
-  const dispatch = useAppDispatch();
-  React.useEffect(() => {
-    dispatch(fetchNewsItems());
-  }, []);
   return (
     <div className="App">
-      {isLoading === 'reject' && <h2>{error}</h2>}
-      {items.map((element, index) => {
-        return <div key={element.id}>{index + '  ' + element.title}</div>;
-      })}
+      <Header />
+      <NewsList />
     </div>
   );
 };
