@@ -2,7 +2,7 @@ export interface NewsItemType {
   by: string;
   descendants: number;
   id: number;
-  kids: number[];
+  kids?: number[];
   score: number;
   time: number;
   title: string;

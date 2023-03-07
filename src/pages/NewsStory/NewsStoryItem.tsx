@@ -36,7 +36,10 @@ const NewsStoryItem = ({ props }: NewsStoryPropsItem) => {
                   : `${props?.score} point | `}
               </Typography>
               <Typography component="span">{`by ${props?.by} | `}</Typography>
-              <Typography component="span">{`${timeData} | ${timeAgo}`}</Typography>
+              <Typography component="span">{`${timeData} | ${timeAgo} | `}</Typography>
+              <Typography component="span">
+                {props?.descendants === 1 ? `1 comment` : `${props?.descendants} comments`}
+              </Typography>
             </div>
           </div>
         )}

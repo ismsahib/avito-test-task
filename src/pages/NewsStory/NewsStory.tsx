@@ -3,20 +3,18 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Header from '../../components/Header';
 import Loader from '../../components/Loader';
-import { fetchNewsItem, selectorNews } from '../../store/newsSlice';
 import { useAppDispatch } from '../../store/store';
-import { NewsItemType } from '../../types/NewsItemType';
-import { getTimeDif } from '../../utils/getTime';
+import { fetchStoryItem, selectorStory } from '../../store/storySlice';
 import NewsStoryItem from './NewsStoryItem';
 
 const NewsStory = () => {
-  const { item, error, isLoading } = useSelector(selectorNews);
+  const { item, error, isLoading } = useSelector(selectorStory);
   const { id } = useParams();
   const dispatch = useAppDispatch();
 
   React.useEffect(() => {
     window.history.scrollRestoration = 'manual';
-    if (id) dispatch(fetchNewsItem(Number(id)));
+    if (id) dispatch(fetchStoryItem(Number(id)));
   }, []);
 
   return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import Loader from './components/Loader';
 import NewsList from './pages/News/NewsList';
@@ -12,6 +12,7 @@ const App: React.FC = () => {
     <div className="App">
       <React.Suspense fallback={<Loader />}>
         <Routes>
+          <Route path="/" element={<Navigate to="/news" replace={true} />}></Route>
           <Route path="/news" element={<NewsList />}></Route>
           <Route path="news/:id" element={<NewsStory />}></Route>
           <Route path="*" element={<NotFoundPage />}></Route>
