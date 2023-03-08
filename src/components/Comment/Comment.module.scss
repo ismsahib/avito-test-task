@@ -1,0 +1,11 @@
+.root {
+  ul,
+  ul li {
+    list-style-type: none;
+  }
+  li {
+    &::marker {
+      display: none;
+    }
+  }
+}

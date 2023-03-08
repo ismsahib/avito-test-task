@@ -4,12 +4,11 @@ import { useSelector } from 'react-redux';
 import { fetchNewsItems, selectorNews } from '../../store/newsSlice';
 import { useAppDispatch } from '../../store/store';
 import NewsItem from './NewsItem';
-import '../../App.css';
 import styles from './NewsList.module.scss';
 import Loader from '../../components/Loader';
 import Header from '../../components/Header';
 
-const NewsList: React.FC = () => {
+const NewsList = () => {
   const [firstLoad, setFirstLoad] = React.useState(true);
   const { items, error, isLoading } = useSelector(selectorNews);
   const dispatch = useAppDispatch();
@@ -35,8 +34,8 @@ const NewsList: React.FC = () => {
         {isLoading === 'reject' && <h2>{error}</h2>}
         {isLoading === 'loading' && <Loader />}
         {items.map((element, index) => (
-          <div className={styles.root}>
-            <NewsItem key={element.id} props={element} index={index} />
+          <div key={element.id} className={styles.root}>
+            <NewsItem props={element} index={index} />
           </div>
         ))}
       </Container>

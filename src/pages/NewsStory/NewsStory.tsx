@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import Comment from '../../components/Comment/Comment';
 import Header from '../../components/Header';
 import Loader from '../../components/Loader';
 import { useAppDispatch } from '../../store/store';
@@ -23,6 +24,7 @@ const NewsStory = () => {
       {isLoading === 'reject' && <h2>{error}</h2>}
       {isLoading === 'loading' && <Loader />}
       <NewsStoryItem props={item} />
+      <Comment id={2921983} />
     </>
   );
 };

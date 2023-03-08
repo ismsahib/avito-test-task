@@ -1,6 +1,5 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import './App.css';
 import Loader from './components/Loader';
 import NewsList from './pages/News/NewsList';
 import NotFoundPage from './pages/NotFoundPage';
