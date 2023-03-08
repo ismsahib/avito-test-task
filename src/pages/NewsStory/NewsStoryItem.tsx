@@ -6,8 +6,10 @@ import { getDataString, getTimeDif } from '../../utils/getTime';
 interface NewsStoryPropsItem {
   props: NewsItemType | null;
   children?: React.ReactChild | React.ReactNode;
+  handleUpdate: () => void;
 }
-const NewsStoryItem = ({ props }: NewsStoryPropsItem) => {
+
+const NewsStoryItem = ({ props, handleUpdate }: NewsStoryPropsItem) => {
   const timeAgo = getTimeDif(props?.time as number);
   const timeData = getDataString(props?.time as number);
 
@@ -43,7 +45,12 @@ const NewsStoryItem = ({ props }: NewsStoryPropsItem) => {
             </div>
           </div>
         )}
-        <Button color="inherit" variant="outlined" sx={{ mt: '1rem' }}>
+        <Button
+          onClick={handleUpdate}
+          color="inherit"
+          variant="outlined"
+          sx={{ mt: '1rem' }}
+          size="small">
           UPDATE COMMENTS
         </Button>
       </CardContent>

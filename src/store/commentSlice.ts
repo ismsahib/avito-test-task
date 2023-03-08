@@ -46,6 +46,6 @@ const commentSlice = createSlice({
   },
 });
 
-export const selectorStory = (state: RootState) => state.comment;
+export const selectorComment = (state: RootState) => state.comment;
 
 export default commentSlice.reducer;
