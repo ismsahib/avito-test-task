@@ -60,7 +60,7 @@ const Comment = ({ id }: CommentPropsType) => {
                           : ` | ${commentItem?.kids.length} comments | `}
                       </Typography>
                       <span onClick={handleView} className={styles.button}>
-                        {hide ? 'hide' : 'view'}
+                        {hide ? '⯈ view' : '⯆ hide'}
                       </span>
                     </>
                   )}
