@@ -70,7 +70,7 @@ const Comment = ({ id }: CommentPropsType) => {
           </CardContent>
         </Card>
       </div>
-      {!hide && <CommentsList kids={commentItem?.kids as number[]} />}
+      {!hide && commentItem?.kids && <CommentsList kids={commentItem?.kids} />}
     </li>
   );
 };
