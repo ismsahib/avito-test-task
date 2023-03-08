@@ -30,7 +30,7 @@ const NewsStory = () => {
       {isLoading === 'reject' && <h2>{error}</h2>}
       {isLoading === 'loading' && <Loader />}
       <NewsStoryItem props={item} handleUpdate={handleUpdate} />
-      {item?.descendants && <CommentsList kids={item?.kids as number[]} />}
+      {!!item?.descendants && <CommentsList kids={item?.kids as number[]} />}
     </>
   );
 };
