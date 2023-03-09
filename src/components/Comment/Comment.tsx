@@ -34,13 +34,11 @@ const Comment = ({ id }: CommentPropsType) => {
       <div className={styles.mb}>
         <Card sx={{ width: '100%' }}>
           <CardContent>
-            {commentItem?.deleted && (
+            {commentItem?.deleted ? (
               <Typography gutterBottom variant="h5" component="div">
                 DELETED
               </Typography>
-            )}
-
-            {!commentItem?.deleted && (
+            ) : (
               <div>
                 <Typography variant="body1">{commentItem?.text}</Typography>
                 <Divider sx={{ borderBottomWidth: 3 }} />
@@ -55,9 +53,9 @@ const Comment = ({ id }: CommentPropsType) => {
                   {commentItem?.kids && (
                     <>
                       <Typography variant="body1" component="span">
-                        {commentItem?.kids.length === 1
-                          ? ' | 1 comment | '
-                          : ` | ${commentItem?.kids.length} comments | `}
+                        {` | ${commentItem?.kids.length} comment${
+                          commentItem?.kids.length === 1 ? '' : 's'
+                        } | `}
                       </Typography>
                       <span onClick={handleView} className={styles.button}>
                         {hide ? '⯈ view' : '⯆ hide'}
@@ -75,4 +73,4 @@ const Comment = ({ id }: CommentPropsType) => {
   );
 };
 
-export default Comment;
+export default React.memo(Comment);

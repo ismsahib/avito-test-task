@@ -23,18 +23,16 @@ const NewsItem = ({ props, index }: NewsItemPropsType) => {
     <Card sx={{ width: '100%' }}>
       <CardActionArea onClick={handlerStoryNews}>
         <CardContent>
-          {props.deleted && (
+          {props.deleted ? (
             <Typography gutterBottom variant="h5" component="div">
               DELETED
             </Typography>
-          )}
-
-          {!props.deleted && (
+          ) : (
             <div>
-              <Typography variant="h6">{`${index + 1}. ` + props.title}</Typography>
+              <Typography variant="h6">{`${index + 1}. ${props.title}`}</Typography>
               <div>
                 <Typography component="span">
-                  {props.score > 1 ? `${props.score} points | ` : `${props.score} point | `}
+                  {`${props.score} point${props.score > 1 ? 's' : ''} | `}
                 </Typography>
                 <Typography component="span">{`by ${props.by} | `}</Typography>
                 <Typography component="span">{timeAgo}</Typography>

@@ -9,9 +9,9 @@ interface CommentsListProps {
 const CommentsList = ({ kids }: CommentsListProps) => {
   return (
     <ul className={styles.root}>
-      {kids.map((element) => {
-        return <Comment key={element} id={element} />;
-      })}
+      {kids.map((element) => (
+        <Comment key={element} id={element} />
+      ))}
     </ul>
   );
 };

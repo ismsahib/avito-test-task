@@ -16,13 +16,11 @@ const NewsStoryItem = ({ props, handleUpdate }: NewsStoryPropsItem) => {
   return (
     <Card sx={{ width: '100%' }}>
       <CardContent>
-        {props?.deleted && (
+        {props?.deleted ? (
           <Typography gutterBottom variant="h5" component="div">
             DELETED
           </Typography>
-        )}
-
-        {!props?.deleted && (
+        ) : (
           <div>
             <Typography variant="h6">
               {
@@ -33,14 +31,12 @@ const NewsStoryItem = ({ props, handleUpdate }: NewsStoryPropsItem) => {
             </Typography>
             <div>
               <Typography component="span">
-                {props && props?.score > 1
-                  ? `${props?.score} points | `
-                  : `${props?.score} point | `}
+                {props && `${props?.score} point${props?.score > 1 ? 's' : ''} | `}
               </Typography>
               <Typography component="span">{`by ${props?.by} | `}</Typography>
               <Typography component="span">{`${timeData} | ${timeAgo} | `}</Typography>
               <Typography component="span">
-                {props?.descendants === 1 ? `1 comment` : `${props?.descendants} comments`}
+                {`${props?.descendants} comment${props?.descendants === 1 ? '' : 's'}`}
               </Typography>
             </div>
           </div>
